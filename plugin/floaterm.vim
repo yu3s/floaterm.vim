@@ -1,7 +1,7 @@
 vim9script
 
+hi link Terminal Search
 hi def link Floaterm       Normal
-#hi def link FloatermNC     NormalNC
 hi def link FloatermBorder NormalFloat
 
 var buf = term_start(&shell, {hidden: 1, term_kill: 'kill', term_finish: 'close'})
