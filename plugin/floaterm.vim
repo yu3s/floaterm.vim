@@ -3,7 +3,7 @@ vim9script
 hi link Terminal Search
 
 var buf = term_start(&shell, {hidden: 1, term_kill: 'kill', term_finish: 'close'})
-var winid = popup_create(buf, {minwidth: 50, minheight: 20})
+var winid = -1
 
 def g:Term()
 	if winid > 0
