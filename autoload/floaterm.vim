@@ -19,6 +19,7 @@ def TerminalOpen(): void
 				border: [1, 1, 1, 1],
 				borderchars: ['─', '│', '─', '│', '┌', '┐', '┘', '└']
 		})
+		setwinvar(winid, '&wincolor', 'Floaterm')
 		silent! execute 'normal! i'
 enddef
 
@@ -29,7 +30,6 @@ enddef
 export def TerminalToggle(): void
 	if !bufexists(bufid)
 		bufid = term_start(&shell, {hidden: 1, term_kill: 'kill', term_finish: 'close'})
-		winid = -1
 	endif
 
 	if empty(getwininfo(winid))
