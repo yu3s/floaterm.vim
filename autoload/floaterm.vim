@@ -4,15 +4,11 @@ hi link Terminal Search
 hi def link Floaterm       Normal
 hi def link FloatermBorder NormalFloat
 
-var buf = term_start(&shell, {hidden: 1, term_kill: 'kill', term_finish: 'close'})
-var winid = -1
+var winid: number = -1
+var bufid: number = -1
 
-export def Term(): void
-	if winid > 0
-		popup_close(winid)
-		winid = -1
-	else
-		winid = popup_create(buf, 
+def TerminalOpen(): void
+		winid = popup_create(bufid, 
 		{
 				minwidth: 140,
 				minheight: 28,
@@ -24,6 +20,27 @@ export def Term(): void
 				borderchars: ['─', '│', '─', '│', '┌', '┐', '┘', '└']
 		})
 		silent! execute 'normal! i'
+enddef
+
+def TerminalClose(): void
+	popup_close(winid)
+enddef
+
+export def TerminalToggle(): void
+	if !bufexists(bufid)
+		bufid = term_start(&shell, {hidden: 1, term_kill: 'kill', term_finish: 'close'})
+		winid = -1
+	endif
+
+	if empty(getwininfo(winid))
+		TerminalOpen()
+	else
+		TerminalClose()
 	endif
 enddef
 
+export def TerminalAutoClose(): void
+	if !empty(getwininfo(winid))
+		TerminalClose()
+	endif
+enddef

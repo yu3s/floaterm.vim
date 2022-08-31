@@ -1,10 +1,10 @@
 vim9script
 
-if exists('g:floaterm') || &cp
+if exists('g:floatermvim') || &cp
 	finish
 endif
-g:floaterm = 1
+g:floatermvim = 1
 
 import autoload 'floaterm.vim'
 
-command! -nargs=0 FloatermToggle  call floaterm.Term()
+command! -nargs=0 FloatermToggle  call floaterm.TerminalToggle()
