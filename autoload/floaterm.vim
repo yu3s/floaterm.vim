@@ -20,7 +20,6 @@ def TerminalOpen(): void
 				borderchars: ['─', '│', '─', '│', '┌', '┐', '┘', '└']
 		})
 		setwinvar(winid, '&wincolor', 'Floaterm')
-		silent! execute 'normal! i'
 enddef
 
 def TerminalClose(): void
