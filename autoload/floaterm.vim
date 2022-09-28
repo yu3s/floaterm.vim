@@ -6,14 +6,16 @@ hi def link FloatermBorder NormalFloat
 
 var winid: number = -1
 var bufid: number = -1
+var width: number = &columns / 2
+var height: number = &lines / 2
 
 def TerminalOpen(): void
 		winid = popup_create(bufid, 
 		{
-				minwidth: 140,
-				minheight: 28,
-				maxwidth: 140,
-				maxhegiht: 28,
+				minwidth: width,
+				maxwidth: width,
+				minheight: height,
+				maxheight: height,
 				highlight:  'Floaterm',
 				borderhighlight: ['FloatermBorder'],
 				border: [1, 1, 1, 1],
