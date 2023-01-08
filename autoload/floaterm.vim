@@ -29,7 +29,13 @@ def TerminalClose(): void
 enddef
 
 export def TerminalToggle(): void
+	if bufexists(bufid) && job_status(term_getjob(bufid)) == "dead"
+		execute("bdelete " .. bufid)
+	endif
+
 	if !bufexists(bufid)
+		width = &columns / 2
+		height = &lines / 2
 		bufid = term_start(&shell, {hidden: 1, term_kill: 'kill', term_finish: 'close'})
 	endif
 
